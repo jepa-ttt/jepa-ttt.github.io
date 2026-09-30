@@ -56,20 +56,20 @@
     "headline": "JEPA-TTT: Persistent Test-Time Training of Latent World Models for Planning under Dynamics Shifts",
     "description": "JEPA-TTT persistently adapts a pretrained latent dynamics predictor from self-supervised test-time interaction to improve planning under dynamics shifts.",
     "author": [
-      {"@type": "Person", "name": "Zheyuan Zhang", "affiliation": [{"@type": "Organization", "name": "Honda Research Institute USA"}, {"@type": "Organization", "name": "Johns Hopkins University"}]},
-      {"@type": "Person", "name": "Suyu Ye", "affiliation": [{"@type": "Organization", "name": "Honda Research Institute USA"}, {"@type": "Organization", "name": "Johns Hopkins University"}]},
-      {"@type": "Person", "name": "Nakul Agarwal", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}},
-      {"@type": "Person", "name": "Hossein Nourkhiz Mahjoub", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}},
-      {"@type": "Person", "name": "Ehsan Moradi Pari", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}},
-      {"@type": "Person", "name": "Daniel Khashabi", "affiliation": {"@type": "Organization", "name": "Johns Hopkins University"}},
-      {"@type": "Person", "name": "Tianmin Shu", "affiliation": {"@type": "Organization", "name": "Johns Hopkins University"}},
-      {"@type": "Person", "name": "Vaishnav Tadiparthi", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}}
+      {"@type": "Person", "name": "Zheyuan Zhang", "url": "https://zheyuanzhang.me/", "affiliation": [{"@type": "Organization", "name": "Honda Research Institute USA"}, {"@type": "Organization", "name": "Johns Hopkins University"}]},
+      {"@type": "Person", "name": "Suyu Ye", "url": "https://suyuye.com/", "affiliation": [{"@type": "Organization", "name": "Honda Research Institute USA"}, {"@type": "Organization", "name": "Johns Hopkins University"}]},
+      {"@type": "Person", "name": "Nakul Agarwal", "url": "https://lukan94.github.io/", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}},
+      {"@type": "Person", "name": "Hossein Nourkhiz Mahjoub", "url": "https://scholar.google.com/citations?user=ZAMQm_MAAAAJ&hl=en", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}},
+      {"@type": "Person", "name": "Ehsan Moradi Pari", "url": "https://scholar.google.com/citations?user=2HQUXxsAAAAJ&hl=en", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}},
+      {"@type": "Person", "name": "Daniel Khashabi", "url": "https://danielkhashabi.com/", "affiliation": {"@type": "Organization", "name": "Johns Hopkins University"}},
+      {"@type": "Person", "name": "Tianmin Shu", "url": "https://www.tshu.io/", "affiliation": {"@type": "Organization", "name": "Johns Hopkins University"}},
+      {"@type": "Person", "name": "Vaishnav Tadiparthi", "url": "https://scholar.google.com/citations?user=JI5z86QAAAAJ&hl=en", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}}
     ],
     "url": "https://www.alphaxiv.org/abs/2609.jepa-ttt",
     "mainEntityOfPage": "https://jepa-ttt.github.io/",
     "image": "https://jepa-ttt.github.io/static/images/teaser.png",
     "encoding": {"@type": "MediaObject", "contentUrl": "https://jepa-ttt.github.io/static/pdfs/jepa-ttt.pdf", "encodingFormat": "application/pdf"},
-    "isPartOf": {"@type": "CreativeWork", "name": "NeurIPS 2026 Workshop on World Models in Physical AI", "url": "https://www.worldmodels-physicalai.com/"},
+    "isPartOf": {"@type": "CreativeWork", "name": "World Models in Physical AI Workshop @ NeurIPS 2026"},
     "keywords": ["world models", "JEPA", "test-time training", "planning", "dynamics shifts"],
     "isAccessibleForFree": true
   }
@@ -84,39 +84,31 @@
   <main id="main-content">
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-body">
-        <div class="container is-max-desktop">
+        <div class="container is-max-desktop publication-header-container">
           <div class="columns is-centered">
             <div class="column has-text-centered">
               <h1 class="title is-1 publication-title" id="page-title" tabindex="-1">JEPA-TTT: Persistent Test-Time Training of Latent World Models for Planning under Dynamics Shifts</h1>
               <div class="is-size-5 publication-authors">
-                <span class="author-block">Zheyuan Zhang<sup>1,2,†</sup>,</span>
-                <span class="author-block">Suyu Ye<sup>1,2,†</sup>,</span>
-                <span class="author-block">Nakul Agarwal<sup>1</sup>,</span>
-                <span class="author-block">Hossein Nourkhiz Mahjoub<sup>1</sup>,</span>
-                <span class="author-block">Ehsan Moradi Pari<sup>1</sup>,</span>
-                <span class="author-block">Daniel Khashabi<sup>2</sup>,</span>
-                <span class="author-block">Tianmin Shu<sup>2</sup>,</span>
-                <span class="author-block">Vaishnav Tadiparthi<sup>1</sup></span>
+                <span class="author-block"><a href="https://zheyuanzhang.me/" target="_blank" rel="noopener noreferrer">Zheyuan Zhang</a><sup>1,2,†</sup>,</span>
+                <span class="author-block"><a href="https://suyuye.com/" target="_blank" rel="noopener noreferrer">Suyu Ye</a><sup>1,2,†</sup>,</span>
+                <span class="author-block"><a href="https://lukan94.github.io/" target="_blank" rel="noopener noreferrer">Nakul Agarwal</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="https://scholar.google.com/citations?user=ZAMQm_MAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer" title="Google Scholar profile">Hossein Nourkhiz Mahjoub</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="https://scholar.google.com/citations?user=2HQUXxsAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer" title="Google Scholar profile">Ehsan Moradi Pari</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="https://danielkhashabi.com/" target="_blank" rel="noopener noreferrer">Daniel Khashabi</a><sup>2</sup>,</span>
+                <span class="author-block"><a href="https://www.tshu.io/" target="_blank" rel="noopener noreferrer">Tianmin Shu</a><sup>2</sup>,</span>
+                <span class="author-block"><a href="https://scholar.google.com/citations?user=JI5z86QAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer" title="Google Scholar profile">Vaishnav Tadiparthi</a><sup>1</sup></span>
               </div>
               <div class="is-size-5 publication-authors publication-affiliations">
                 <span class="author-block"><sup>1</sup>Honda Research Institute USA</span>
                 <span class="author-block"><sup>2</sup>Johns Hopkins University</span>
               </div>
               <p class="publication-note"><sup>†</sup>Work done during an internship at Honda Research Institute USA.</p>
-              <p class="publication-venue">
-                <a href="https://www.worldmodels-physicalai.com/" target="_blank" rel="noopener noreferrer">NeurIPS 2026 World Models in Physical AI Workshop</a>
-              </p>
+              <p class="publication-venue">World Models in Physical AI Workshop @ NeurIPS 2026</p>
               <div class="publication-links">
                 <span class="link-block">
                   <a href="https://www.alphaxiv.org/abs/2609.jepa-ttt" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3 10 14M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span>
                     <span>Paper</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="static/pdfs/jepa-ttt.pdf" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></span>
-                    <span>PDF</span>
                   </a>
                 </span>
                 <span class="link-block">

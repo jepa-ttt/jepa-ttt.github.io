@@ -1,4 +1,18 @@
 /* Content-specific additions to the unmodified Academic Project Page Template. */
+.container.publication-header-container {
+  max-width: 1280px;
+}
+
+.publication-header-container .publication-title {
+  text-wrap: balance;
+}
+
+.publication-header-container .publication-authors {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .publication-affiliations {
   margin-bottom: 0.75rem;
 }
@@ -10,10 +24,8 @@
 
 .publication-venue {
   margin-bottom: 1rem;
-}
-
-.publication-venue a {
-  color: var(--primary-color);
+  background: none;
+  padding: 0;
 }
 
 .footer .content a {

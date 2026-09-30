@@ -16,17 +16,19 @@ Open http://localhost:8000. The website is static and needs no build step. GitHu
 
 ## Content and assets
 
-- `index.html`: paper title, authors, workshop link, abstract, method, evaluation, results, ablations, and BibTeX.
+- `index.html`: paper title, linked authors, workshop text, abstract, method, evaluation, results, ablations, and BibTeX.
 - `static/images/`: figures rendered from the manuscript's PDF figures; `favicon.svg` is a project monogram.
 - `static/pdfs/jepa-ttt.pdf`: full paper, including the appendix, compiled from the supplied LaTeX manuscript.
 - `static/citation.bib`: downloadable citation, also displayed on the page.
 - `static/js/index.js`: copy citation and scroll-to-top interactions.
 
-The source manuscript is `main.tex` and its included `sections/` and `figures/` files in the supplied JEPA-TTT preprint directory. Numerical results and captions follow that manuscript. The dagger marker denotes work done during an internship at Honda Research Institute USA. The main Paper button links to the author-provided [alphaXiv page](https://www.alphaxiv.org/abs/2609.jepa-ttt); a separate PDF button serves the compiled manuscript. No code link is included.
+The source manuscript is `main.tex` and its included `sections/` and `figures/` files in the supplied JEPA-TTT preprint directory. Numerical results and captions follow that manuscript. The dagger marker denotes work done during an internship at Honda Research Institute USA. The Paper button links to the author-provided [alphaXiv page](https://www.alphaxiv.org/abs/2609.jepa-ttt). No PDF or code button is shown; the compiled PDF remains available to scholarly indexing metadata.
 
 The PDF was compiled with Tectonic 0.17.0 from a temporary copy of the manuscript. The pdfTeX-only `\pdfminorversion=4` assignment was guarded with `\ifdefined\pdfminorversion ... \fi` for XeTeX compatibility; the original manuscript files were not changed. Figures were rendered with `pdftoppm -png -singlefile -scale-to 2200`.
 
-The workshop link points to the official [NeurIPS 2026 World Models in Physical AI Workshop](https://www.worldmodels-physicalai.com/).
+The venue is displayed as plain text: World Models in Physical AI Workshop @ NeurIPS 2026. The title uses a wider desktop container, while the author list and page content retain their existing widths.
+
+Author names link to verified personal homepages where available. Hossein Nourkhiz Mahjoub, Ehsan Moradi Pari, and Vaishnav Tadiparthi link to the Google Scholar profiles listed on [Nakul Agarwal's homepage](https://lukan94.github.io/).
 
 ## Attribution and license
 
