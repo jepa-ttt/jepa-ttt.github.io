@@ -1,0 +1,180 @@
+/* Content-specific additions to the unmodified Academic Project Page Template. */
+.publication-affiliations {
+  margin-bottom: 0.75rem;
+}
+
+.publication-note {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.publication-venue {
+  margin-bottom: 1rem;
+}
+
+.publication-venue a {
+  color: var(--primary-color);
+}
+
+.footer .content a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.paper-figure {
+  margin: 2rem 0;
+}
+
+.paper-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: white;
+}
+
+.paper-figure figcaption {
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.teaser .paper-figure {
+  margin-top: 0;
+}
+
+.section-intro {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.research-copy {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.research-copy strong {
+  color: var(--text-primary);
+}
+
+.table-container {
+  margin: 1.5rem 0;
+}
+
+.results-table {
+  font-variant-numeric: tabular-nums;
+}
+
+.results-table caption {
+  text-align: left;
+  color: var(--text-secondary);
+  padding-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.results-table tbody th {
+  font-weight: 500;
+}
+
+.results-table .ours {
+  background: var(--background-accent);
+  font-weight: 700;
+}
+
+.result-details {
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+.result-details summary {
+  cursor: pointer;
+  color: var(--primary-color);
+  font-weight: 600;
+  padding: 0.5rem 0;
+}
+
+.icon svg,
+.scroll-to-top svg,
+.copy-bibtex-btn svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.copy-bibtex-btn.copied .copy-text::after {
+  content: none;
+}
+
+.copy-status {
+  min-height: 1.5em;
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -5rem;
+  z-index: 1001;
+  padding: 0.75rem 1rem;
+  background: white;
+  color: var(--primary-color);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 4px;
+}
+
+@media screen and (max-width: 768px) {
+  .content.has-text-justified {
+    text-align: left !important;
+  }
+
+  .paper-figure figcaption {
+    font-size: 0.875rem;
+  }
+
+  .results-table {
+    font-size: 0.875rem;
+  }
+
+  .scroll-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media print {
+  .scroll-to-top,
+  .copy-bibtex-btn,
+  .copy-status {
+    display: none;
+  }
+}

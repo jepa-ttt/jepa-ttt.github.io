@@ -1,1 +1,33 @@
-# jepa-ttt.github.io
+# JEPA-TTT project website
+
+Academic project page for **JEPA-TTT: Persistent Test-Time Training of Latent World Models for Planning under Dynamics Shifts**.
+
+Website: https://jepa-ttt.github.io/
+
+The page uses the [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template) by Eliahu Horwitz (revision `d38af1ccae1ce82c3404d2820c4c646afd409f81`), based on [Nerfies](https://nerfies.github.io/). The original Bulma and template styles are retained; project-specific layout and accessibility adjustments are in `static/css/project.css`.
+
+## Local preview
+
+```sh
+python3 -m http.server 8000
+```
+
+Open http://localhost:8000. The website is static and needs no build step. GitHub Pages can serve the root of the `main` branch; `.nojekyll` disables Jekyll processing.
+
+## Content and assets
+
+- `index.html`: paper title, authors, workshop link, abstract, method, evaluation, results, ablations, and BibTeX.
+- `static/images/`: figures rendered from the manuscript's PDF figures; `favicon.svg` is a project monogram.
+- `static/pdfs/jepa-ttt.pdf`: full paper, including the appendix, compiled from the supplied LaTeX manuscript.
+- `static/citation.bib`: downloadable citation, also displayed on the page.
+- `static/js/index.js`: copy citation and scroll-to-top interactions.
+
+The source manuscript is `main.tex` and its included `sections/` and `figures/` files in the supplied JEPA-TTT preprint directory. Numerical results and captions follow that manuscript. The dagger marker denotes work done during an internship at Honda Research Institute USA. The main Paper button links to the author-provided [alphaXiv page](https://www.alphaxiv.org/abs/2609.jepa-ttt); a separate PDF button serves the compiled manuscript. No code link is included.
+
+The PDF was compiled with Tectonic 0.17.0 from a temporary copy of the manuscript. The pdfTeX-only `\pdfminorversion=4` assignment was guarded with `\ifdefined\pdfminorversion ... \fi` for XeTeX compatibility; the original manuscript files were not changed. Figures were rendered with `pdftoppm -png -singlefile -scale-to 2200`.
+
+The workshop link points to the official [NeurIPS 2026 World Models in Physical AI Workshop](https://www.worldmodels-physicalai.com/).
+
+## Attribution and license
+
+The website template and its adaptations are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The upstream attribution is retained in the page footer. Research content and figures are credited to the JEPA-TTT authors. Bulma retains its MIT license notice in the distributed stylesheet.

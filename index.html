@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JEPA-TTT: Persistent Test-Time Training of Latent World Models for Planning under Dynamics Shifts</title>
+  <meta name="description" content="JEPA-TTT adapts latent world models during deployment, improving planning across eight dynamics shifts without goal images or online environment rewards.">
+  <meta name="keywords" content="JEPA-TTT, world models, joint-embedding predictive architecture, test-time training, model predictive control, dynamics shifts, physical AI">
+  <meta name="author" content="Zheyuan Zhang, Suyu Ye, Nakul Agarwal, Hossein Nourkhiz Mahjoub, Ehsan Moradi Pari, Daniel Khashabi, Tianmin Shu, Vaishnav Tadiparthi">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="canonical" href="https://jepa-ttt.github.io/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="JEPA-TTT">
+  <meta property="og:title" content="JEPA-TTT: Persistent Test-Time Training of Latent World Models for Planning under Dynamics Shifts">
+  <meta property="og:description" content="Persistent self-supervised adaptation improves planning across eight dynamics shifts, while the visual encoder and reward head remain fixed.">
+  <meta property="og:url" content="https://jepa-ttt.github.io/">
+  <meta property="og:image" content="https://jepa-ttt.github.io/static/images/teaser.png">
+  <meta property="og:image:width" content="2200">
+  <meta property="og:image:height" content="838">
+  <meta property="og:image:alt" content="JEPA-TTT planning and adaptation loop: a trainable latent predictor, frozen encoder and reward head, and persistent dense replay.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JEPA-TTT: Persistent Test-Time Training of Latent World Models">
+  <meta name="twitter:description" content="Adapting latent dynamics for planning without goal images or online environment rewards. NeurIPS 2026 World Models in Physical AI Workshop.">
+  <meta name="twitter:image" content="https://jepa-ttt.github.io/static/images/teaser.png">
+  <meta name="twitter:image:alt" content="Overview of JEPA-TTT's persistent self-supervised adaptation loop.">
+
+  <meta name="citation_title" content="JEPA-TTT: Persistent Test-Time Training of Latent World Models for Planning under Dynamics Shifts">
+  <meta name="citation_author" content="Zhang, Zheyuan">
+  <meta name="citation_author" content="Ye, Suyu">
+  <meta name="citation_author" content="Agarwal, Nakul">
+  <meta name="citation_author" content="Mahjoub, Hossein Nourkhiz">
+  <meta name="citation_author" content="Pari, Ehsan Moradi">
+  <meta name="citation_author" content="Khashabi, Daniel">
+  <meta name="citation_author" content="Shu, Tianmin">
+  <meta name="citation_author" content="Tadiparthi, Vaishnav">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="NeurIPS 2026 Workshop on World Models in Physical AI">
+  <meta name="citation_abstract_html_url" content="https://www.alphaxiv.org/abs/2609.jepa-ttt">
+  <meta name="citation_pdf_url" content="https://jepa-ttt.github.io/static/pdfs/jepa-ttt.pdf">
+
+  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/project.css">
+  <script defer src="static/js/index.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "JEPA-TTT: Persistent Test-Time Training of Latent World Models for Planning under Dynamics Shifts",
+    "description": "JEPA-TTT persistently adapts a pretrained latent dynamics predictor from self-supervised test-time interaction to improve planning under dynamics shifts.",
+    "author": [
+      {"@type": "Person", "name": "Zheyuan Zhang", "affiliation": [{"@type": "Organization", "name": "Honda Research Institute USA"}, {"@type": "Organization", "name": "Johns Hopkins University"}]},
+      {"@type": "Person", "name": "Suyu Ye", "affiliation": [{"@type": "Organization", "name": "Honda Research Institute USA"}, {"@type": "Organization", "name": "Johns Hopkins University"}]},
+      {"@type": "Person", "name": "Nakul Agarwal", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}},
+      {"@type": "Person", "name": "Hossein Nourkhiz Mahjoub", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}},
+      {"@type": "Person", "name": "Ehsan Moradi Pari", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}},
+      {"@type": "Person", "name": "Daniel Khashabi", "affiliation": {"@type": "Organization", "name": "Johns Hopkins University"}},
+      {"@type": "Person", "name": "Tianmin Shu", "affiliation": {"@type": "Organization", "name": "Johns Hopkins University"}},
+      {"@type": "Person", "name": "Vaishnav Tadiparthi", "affiliation": {"@type": "Organization", "name": "Honda Research Institute USA"}}
+    ],
+    "url": "https://www.alphaxiv.org/abs/2609.jepa-ttt",
+    "mainEntityOfPage": "https://jepa-ttt.github.io/",
+    "image": "https://jepa-ttt.github.io/static/images/teaser.png",
+    "encoding": {"@type": "MediaObject", "contentUrl": "https://jepa-ttt.github.io/static/pdfs/jepa-ttt.pdf", "encodingFormat": "application/pdf"},
+    "isPartOf": {"@type": "CreativeWork", "name": "NeurIPS 2026 Workshop on World Models in Physical AI", "url": "https://www.worldmodels-physicalai.com/"},
+    "keywords": ["world models", "JEPA", "test-time training", "planning", "dynamics shifts"],
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <button class="scroll-to-top" type="button" title="Scroll to top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+  </button>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title" id="page-title" tabindex="-1">JEPA-TTT: Persistent Test-Time Training of Latent World Models for Planning under Dynamics Shifts</h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Zheyuan Zhang<sup>1,2,†</sup>,</span>
+                <span class="author-block">Suyu Ye<sup>1,2,†</sup>,</span>
+                <span class="author-block">Nakul Agarwal<sup>1</sup>,</span>
+                <span class="author-block">Hossein Nourkhiz Mahjoub<sup>1</sup>,</span>
+                <span class="author-block">Ehsan Moradi Pari<sup>1</sup>,</span>
+                <span class="author-block">Daniel Khashabi<sup>2</sup>,</span>
+                <span class="author-block">Tianmin Shu<sup>2</sup>,</span>
+                <span class="author-block">Vaishnav Tadiparthi<sup>1</sup></span>
+              </div>
+              <div class="is-size-5 publication-authors publication-affiliations">
+                <span class="author-block"><sup>1</sup>Honda Research Institute USA</span>
+                <span class="author-block"><sup>2</sup>Johns Hopkins University</span>
+              </div>
+              <p class="publication-note"><sup>†</sup>Work done during an internship at Honda Research Institute USA.</p>
+              <p class="publication-venue">
+                <a href="https://www.worldmodels-physicalai.com/" target="_blank" rel="noopener noreferrer">NeurIPS 2026 World Models in Physical AI Workshop</a>
+              </p>
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://www.alphaxiv.org/abs/2609.jepa-ttt" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3 10 14M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="static/pdfs/jepa-ttt.pdf" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></span>
+                    <span>PDF</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#results" class="button is-normal is-rounded is-dark">
+                    <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18M7 16l4-5 4 2 5-7"/></svg></span>
+                    <span>Results</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#BibTeX" class="button is-normal is-rounded is-dark">
+                    <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H6v6H3v4h3v6h3M15 4h3v6h3v4h-3v6h-3"/></svg></span>
+                    <span>BibTeX</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser" aria-label="JEPA-TTT overview">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <figure class="paper-figure">
+            <a href="static/images/teaser.png" target="_blank" rel="noopener noreferrer" aria-label="Open the JEPA-TTT overview figure at full resolution">
+              <img src="static/images/teaser.png" width="2200" height="838" fetchpriority="high" alt="JEPA-TTT loop: encode observations with a frozen encoder, plan with the trainable predictor and frozen reward head, execute actions, and update the predictor using dense replay. Updates persist across episodes.">
+            </a>
+            <figcaption class="has-text-centered">
+              <strong>A world model that keeps learning as it acts.</strong> JEPA-TTT updates its latent dynamics predictor from observed transitions and retains adaptation across episodes. The visual encoder and reward head stay fixed; planning needs neither goal images nor online environment rewards.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="abstract" aria-labelledby="abstract-title">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3" id="abstract-title">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>World models enable agents to plan by predicting future states of the environment, but their predictions can become unreliable when test-time dynamics differ from those seen during training. We present JEPA-TTT, which adapts the latent dynamics predictor of a pretrained action-conditioned Joint-Embedding Predictive Architecture world model throughout test time. Self-supervised updates accumulate across episodes, while the visual encoder and reward head remain fixed, preserving the pretrained representation and task objective. Planning requires neither a goal image nor online environment reward. JEPA-TTT uses dense replay, which forms prediction windows at every temporal offset, retains them in a growing buffer, and samples minibatches from that buffer for predictor updates. Across eight dynamics shifts in four continuous-control environments, JEPA-TTT improves planning on every shift. After 500 test-time episodes, it reduces autoregressive latent prediction error by 83% on average and improves planning performance by 153% over the frozen JEPA world model. These results show that persistent self-supervised test-time training can adapt a pretrained latent world model under changed dynamics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method" aria-labelledby="method-title">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered" id="method-title">Persistent Test-Time Training</h2>
+        <p class="section-intro research-copy">When dynamics change, the same action can produce a different outcome. A frozen world model can then rank candidate plans incorrectly. JEPA-TTT uses the agent’s own observations and executed actions to adapt the predictor throughout deployment.</p>
+        <figure class="paper-figure">
+          <a href="static/images/dynamics_shift_problem.png" target="_blank" rel="noopener noreferrer" aria-label="Open the dynamics shift illustration at full resolution">
+            <img src="static/images/dynamics_shift_problem.png" width="2200" height="347" loading="lazy" decoding="async" alt="A candidate action has different outcomes under training and test dynamics, causing a pretrained world model to make an incorrect prediction.">
+          </a>
+          <figcaption>A dynamics shift changes the consequences of an action. The observed transition provides a self-supervised target for adapting the dynamics model.</figcaption>
+        </figure>
+        <div class="content research-copy">
+          <ol>
+            <li><strong>Plan and act.</strong> Cross-Entropy Method (CEM) planning rolls candidate actions forward in latent space and scores them with an offline-trained, frozen reward head. Execute the first action block, observe the result, and replan.</li>
+            <li><strong>Learn from dense replay.</strong> Form prediction windows at every valid temporal offset and store them in a growing buffer. Sample minibatches and update the predictor to match the frozen encoder’s representations of observed states.</li>
+            <li><strong>Carry adaptation forward.</strong> Retain the predictor parameters, optimizer state, and replay buffer across episode boundaries. At most one predictor update is performed per replanning step when a full minibatch is available.</li>
+          </ol>
+          <p>Only the dynamics predictor is adapted. Keeping the visual encoder and reward head frozen preserves both the representation space and the task objective. Reward labels are used to train the reward head <em>offline</em>; environment rewards are not observed during test-time training or planning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="evaluation" aria-labelledby="evaluation-title">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered" id="evaluation-title">Eight Dynamics Shifts, Four Environments</h2>
+        <p class="section-intro research-copy">We evaluate two controlled dynamics shifts in each of PushT, Two-Room, Reacher, and OGBench-Cube. Each deployment has one dynamics change that remains fixed for 500 test-time episodes. The observation mapping, task score, action space, and episode horizon stay unchanged.</p>
+        <figure class="paper-figure">
+          <a href="static/images/dynamics_shift_overview.png" target="_blank" rel="noopener noreferrer" aria-label="Open all eight dynamics shift illustrations at full resolution">
+            <img src="static/images/dynamics_shift_overview.png" width="2200" height="1258" loading="lazy" decoding="async" alt="Eight shifts: PushT action and contact rotations; Two-Room spatial wave and grid rotation fields; Reacher joint-phase and harmonic fields; OGBench-Cube quadratic crosstalk and delayed cyclic actuation.">
+          </a>
+          <figcaption>Gray dashed arrows indicate training dynamics; orange arrows indicate test dynamics. The shifts span actuator mappings, contact response, state-dependent control, cross-axis coupling, and delayed actuation.</figcaption>
+        </figure>
+        <div class="table-container" tabindex="0" role="region" aria-label="Environment and dynamics shift descriptions">
+          <table class="table is-fullwidth results-table">
+            <caption>What changes at test time?</caption>
+            <thead><tr><th scope="col">Environment</th><th scope="col">Dynamics shifts</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">PushT</th><td>Rotate the agent’s action by 90°, or rotate only the block’s contact-induced motion by 90°.</td></tr>
+              <tr><th scope="row">Two-Room</th><td>Rotate actions according to a spatial wave field or a two-dimensional grid field.</td></tr>
+              <tr><th scope="row">Reacher</th><td>Rotate motor commands using a joint-phase field or a harmonic field that depends on joint configuration.</td></tr>
+              <tr><th scope="row">OGBench-Cube</th><td>Add nonlinear cross-axis coupling, or delay the command by one step and route it cyclically across axes.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="research-copy">Each world model is pretrained on 3,000 episodes under the training dynamics. During deployment, we evaluate every 50 episodes on the same 100 held-out episodes, with three deployment runs per shift. Held-out evaluation trajectories never enter the adaptation buffer.</p>
+      </div>
+    </section>
+
+    <section class="section" id="results" aria-labelledby="results-title">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered" id="results-title">Planning Improves on Every Shift</h2>
+        <p class="section-intro research-copy">JEPA-TTT outperforms Frozen JEPA, PPO-TTT, and the adapted AdaJEPA baseline on all eight shifts for both reported planning metrics. Averaged across shifts, the <strong>best held-out score improves by 153%</strong> and the <strong>normalized planning-score AUC improves by 113%</strong> over Frozen JEPA.</p>
+        <figure class="paper-figure">
+          <a href="static/images/main_baseline_best_auc.png" target="_blank" rel="noopener noreferrer" aria-label="Open the planning results figure at full resolution">
+            <img src="static/images/main_baseline_best_auc.png" width="2200" height="1333" loading="lazy" decoding="async" alt="Best held-out planning score and normalized score AUC for all eight shifts. JEPA-TTT has the highest score in every comparison against Frozen JEPA, PPO-TTT, and AdaJEPA.">
+          </a>
+          <figcaption>Planning performance under shifted dynamics. Panel (a) shows best held-out scores; panel (b) shows normalized held-out score AUC over episodes 0–500. Error bars report standard deviations across three deployment runs.</figcaption>
+        </figure>
+        <div class="table-container" tabindex="0" role="region" aria-label="Aggregate planning results">
+          <table class="table is-fullwidth results-table">
+            <caption>Planning results averaged across the eight shifts. Higher is better.</caption>
+            <thead><tr><th scope="col">Method</th><th scope="col">Best score</th><th scope="col">Mean AUC</th><th scope="col">Online environment rewards</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Frozen JEPA</th><td>0.267</td><td>0.267</td><td>No</td></tr>
+              <tr><th scope="row">PPO-TTT</th><td>0.307</td><td>0.279</td><td>Yes (oracle rewards)</td></tr>
+              <tr><th scope="row">AdaJEPA</th><td>0.297</td><td>0.297</td><td>No</td></tr>
+              <tr class="ours"><th scope="row"><strong>JEPA-TTT</strong></th><td>0.678</td><td>0.571</td><td>No</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="content research-copy">
+          <p><strong>Reading the metrics.</strong> Best score is the maximum three-run mean over evaluations at episodes 50, 100, …, 500. Mean AUC is the area under the held-out score curve from episode 0 to 500, divided by 500 and averaged over runs. It measures performance throughout adaptation.</p>
+          <p><strong>Controlled comparisons.</strong> Frozen JEPA and AdaJEPA use the same pretrained world model, frozen reward head, and CEM planner as JEPA-TTT. AdaJEPA is adapted to this goal-image-free setting and resets its adaptation each episode. PPO-TTT receives online environment rewards during its 500-episode adaptation.</p>
+        </div>
+        <details class="result-details">
+          <summary>View planning curves over all 500 episodes</summary>
+          <figure class="paper-figure">
+            <a href="static/images/main_capability.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full planning curves at full resolution">
+              <img src="static/images/main_capability.png" width="1992" height="2200" loading="lazy" decoding="async" alt="Eight learning curves compare JEPA-TTT with Frozen JEPA, PPO-TTT, AdaJEPA, and an offline reference across 500 test-time episodes.">
+            </a>
+            <figcaption>Curves show means across three deployment runs; shaded regions show standard deviations. On six of eight shifts, JEPA-TTT’s best score is close to or slightly exceeds the data-rich offline reference. That reference uses 3,000 episodes collected directly under the test dynamics and is neither a deployable baseline nor a mathematical upper bound.</figcaption>
+          </figure>
+        </details>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="prediction" aria-labelledby="prediction-title">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered" id="prediction-title">More Accurate Dynamics, Better Plans</h2>
+        <p class="section-intro research-copy">After 500 test-time episodes, JEPA-TTT reduces five-block autoregressive latent prediction MSE by <strong>83% on average</strong>. Error decreases on every shift when the frozen and adapted models receive identical held-out trajectories, observed context, and future actions.</p>
+        <figure class="paper-figure">
+          <a href="static/images/prediction_recovery.png" target="_blank" rel="noopener noreferrer" aria-label="Open the prediction error figure at full resolution">
+            <img src="static/images/prediction_recovery.png" width="2200" height="769" loading="lazy" decoding="async" alt="Autoregressive latent MSE decreases after adaptation on all eight shifts, with relative reductions ranging from approximately 45% to 99%.">
+          </a>
+          <figcaption>The predictor rolls out five future latent states without intermediate observations. Percentages indicate relative MSE reduction after adaptation; error bars show standard deviations over three adapted models. Raw MSE values are not directly comparable across tasks because their latent spaces are trained independently.</figcaption>
+        </figure>
+        <figure class="paper-figure">
+          <a href="static/images/cem_ranking_comparison.png" target="_blank" rel="noopener noreferrer" aria-label="Open the candidate plan ranking comparison at full resolution">
+            <img src="static/images/cem_ranking_comparison.png" width="2200" height="677" loading="lazy" decoding="async" alt="Qualitative examples show Frozen JEPA incorrectly favoring Plan A while JEPA-TTT correctly favors Plan B, which achieves a higher ground-truth task score.">
+          </a>
+          <figcaption><strong>Correcting the ordering of candidate plans.</strong> Plan A is optimized with Frozen JEPA and Plan B with JEPA-TTT from the same initial state. The adapted predictor recovers the better plan’s ranking while using the same frozen reward head. A pretrained decoder is used only to visualize predictions.</figcaption>
+        </figure>
+        <details class="result-details">
+          <summary>View decoded predictions before and after adaptation</summary>
+          <figure class="paper-figure">
+            <a href="static/images/appendix_qualitative_1.png" target="_blank" rel="noopener noreferrer" aria-label="Open decoded PushT and Two-Room predictions at full resolution">
+              <img src="static/images/appendix_qualitative_1.png" width="2200" height="2145" loading="lazy" decoding="async" alt="Ground-truth, frozen-model, and adapted-model image sequences for both PushT and Two-Room shifts at 5, 15, and 25 steps ahead.">
+            </a>
+            <figcaption>PushT and Two-Room: ground truth, Frozen JEPA, and the adapted model share the same initial observations and future action sequence. Columns show 5, 15, and 25 raw environment steps ahead.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <a href="static/images/appendix_qualitative_2.png" target="_blank" rel="noopener noreferrer" aria-label="Open decoded Reacher and OGBench-Cube predictions at full resolution">
+              <img src="static/images/appendix_qualitative_2.png" width="2200" height="2145" loading="lazy" decoding="async" alt="Ground-truth, frozen-model, and adapted-model image sequences for both Reacher and OGBench-Cube shifts at 5, 15, and 25 steps ahead.">
+            </a>
+            <figcaption>Reacher and OGBench-Cube, with the same layout. These decoded rollouts are qualitative diagnostics; neither the decoder nor its output is used for planning or computing latent prediction MSE.</figcaption>
+          </figure>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="ablations" aria-labelledby="ablations-title">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered" id="ablations-title">What Makes Adaptation Effective?</h2>
+        <p class="section-intro research-copy">Controlled ablations separate additional optimization, temporal coverage, and replay. Dense temporal windows improve aggregate planning performance, with a small additional benefit from replay.</p>
+        <div class="table-container" tabindex="0" role="region" aria-label="Dense replay ablation results">
+          <table class="table is-fullwidth results-table">
+            <caption>Mean across eight shifts, with standard deviations over three run-level averages.</caption>
+            <thead><tr><th scope="col">Update rule</th><th scope="col">Best score</th><th scope="col">Mean AUC</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Sparse stream</th><td>0.497 ± 0.028</td><td>0.368 ± 0.007</td></tr>
+              <tr><th scope="row">Compute-matched sparse stream</th><td>0.625 ± 0.025</td><td>0.495 ± 0.025</td></tr>
+              <tr><th scope="row">Dense stream</th><td>0.671 ± 0.008</td><td>0.548 ± 0.007</td></tr>
+              <tr class="ours"><th scope="row"><strong>Dense replay (JEPA-TTT)</strong></th><td>0.678 ± 0.013</td><td>0.571 ± 0.004</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="content research-copy">
+          <p>Sparse windows begin at action-block boundaries; dense windows begin at every environment step. Compute-matched sparse streaming repeats sparse windows to match the dense presentation budget. Dense replay samples from the accumulated dense windows under the same cumulative update budget as the dense stream.</p>
+          <p><strong>Persistence matters.</strong> In a separate matched control using episode-local dense windows, retaining the predictor and optimizer state across episodes raises best score from 0.289 to 0.729 and mean AUC from 0.273 to 0.637, with the same number of predictor updates. This control uses a batch size of 8 and is separate from the main dense replay protocol.</p>
+          <p><strong>Scope.</strong> The study evaluates a single persistent dynamics shift. Simultaneous visual or reward changes, sequences of dynamics changes, and forgetting of previously learned dynamics remain outside the evaluation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="BibTeX" aria-labelledby="bibtex-title">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title" id="bibtex-title">BibTeX</h2>
+          <button class="copy-bibtex-btn" type="button" title="Copy BibTeX to clipboard" aria-label="Copy BibTeX to clipboard">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre><code id="bibtex-code">@inproceedings{zhang2026jepattt,
+  title     = {{JEPA-TTT}: Persistent Test-Time Training of Latent World Models
+               for Planning under Dynamics Shifts},
+  author    = {Zhang, Zheyuan and Ye, Suyu and Agarwal, Nakul and
+               Mahjoub, Hossein Nourkhiz and Pari, Ehsan Moradi and
+               Khashabi, Daniel and Shu, Tianmin and Tadiparthi, Vaishnav},
+  booktitle = {NeurIPS 2026 Workshop on World Models in Physical AI},
+  year      = {2026},
+  url       = {https://www.alphaxiv.org/abs/2609.jepa-ttt}
+}</code></pre>
+        <p class="copy-status" role="status" aria-live="polite"></p>
+        <p><a href="static/citation.bib" download="jepa-ttt.bib">Download citation</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>This page uses the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a>, adapted from <a href="https://nerfies.github.io/" target="_blank" rel="noopener noreferrer">Nerfies</a>.</p>
+            <p>The website template and its adaptations are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
