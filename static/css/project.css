@@ -23,6 +23,11 @@
 }
 
 .publication-venue {
+  /* Workshop website's accent for text on light backgrounds. */
+  color: #0e8ba3;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.4;
   margin-bottom: 1rem;
   background: none;
   padding: 0;
