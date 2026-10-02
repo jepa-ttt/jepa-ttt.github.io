@@ -83,6 +83,15 @@
   font-variant-numeric: tabular-nums;
 }
 
+.dense-replay-table td {
+  white-space: nowrap;
+}
+
+.dense-replay-table th[scope="rowgroup"] {
+  min-width: 140px;
+  vertical-align: middle;
+}
+
 .results-table caption {
   text-align: left;
   color: var(--text-secondary);

@@ -285,13 +285,50 @@
           <h3 class="title is-4">Dense Replay</h3>
           <p>Controlled comparisons separate additional optimization, temporal coverage, and replay. Dense temporal windows improve aggregate planning performance. Replay provides a small additional benefit over the dense stream, raising mean best score from <strong>0.671 to 0.678</strong> and mean AUC from <strong>0.548 to 0.571</strong> under the same cumulative update budget.</p>
         </div>
-        <figure class="paper-figure">
-          <a href="static/images/dense_replay.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full dense replay ablation results at full resolution">
-            <img src="static/images/dense_replay.png" width="880" height="540" loading="lazy" decoding="async" alt="Best held-out planning score and normalized score AUC for four update rules on eight dynamics shifts. Aggregate best score and mean AUC are 0.497 and 0.368 for sparse stream, 0.625 and 0.495 for compute-matched sparse stream, 0.671 and 0.548 for dense stream, and 0.678 and 0.571 for dense replay.">
-          </a>
-          <figcaption>Dense replay achieves the highest aggregate best score and mean AUC among the four update rules. Entries show means and standard deviations over three runs; the Mean rows summarize run-level averages across eight shifts. Bold marks the highest mean for each metric and shift.</figcaption>
-        </figure>
+        <div class="table-container" tabindex="0" role="region" aria-label="Dense replay ablation results">
+          <table class="table is-fullwidth results-table dense-replay-table">
+            <caption>Best held-out score and normalized AUC.</caption>
+            <thead><tr><th scope="col">Shift</th><th scope="col">Metric</th><th scope="col">Sparse<br>stream</th><th scope="col">Compute-matched<br>sparse stream</th><th scope="col">Dense<br>stream</th><th scope="col">Dense replay<br>(JEPA-TTT)</th></tr></thead>
+            <tbody>
+              <tr><th scope="rowgroup" rowspan="2">PushT: action rotation</th><th scope="row">Best</th><td>0.253 ± 0.063</td><td>0.236 ± 0.049</td><td><strong>0.511 ± 0.009</strong></td><td>0.490 ± 0.022</td></tr>
+              <tr><th scope="row">AUC</th><td>0.169 ± 0.007</td><td>0.169 ± 0.021</td><td>0.359 ± 0.044</td><td><strong>0.378 ± 0.022</strong></td></tr>
+            </tbody>
+            <tbody>
+              <tr><th scope="rowgroup" rowspan="2">PushT: contact rotation</th><th scope="row">Best</th><td>0.317 ± 0.258</td><td>0.521 ± 0.319</td><td><strong>0.646 ± 0.044</strong></td><td>0.619 ± 0.033</td></tr>
+              <tr><th scope="row">AUC</th><td>0.205 ± 0.082</td><td>0.320 ± 0.157</td><td>0.490 ± 0.041</td><td><strong>0.555 ± 0.028</strong></td></tr>
+            </tbody>
+            <tbody>
+              <tr><th scope="rowgroup" rowspan="2">Two-Room: spatial wave</th><th scope="row">Best</th><td>0.505 ± 0.031</td><td>0.790 ± 0.002</td><td>0.797 ± 0.002</td><td><strong>0.799 ± 0.002</strong></td></tr>
+              <tr><th scope="row">AUC</th><td>0.427 ± 0.034</td><td>0.672 ± 0.020</td><td>0.697 ± 0.012</td><td><strong>0.728 ± 0.012</strong></td></tr>
+            </tbody>
+            <tbody>
+              <tr><th scope="rowgroup" rowspan="2">Two-Room: grid rotation</th><th scope="row">Best</th><td>0.786 ± 0.004</td><td>0.794 ± 0.003</td><td>0.782 ± 0.000</td><td><strong>0.799 ± 0.003</strong></td></tr>
+              <tr><th scope="row">AUC</th><td>0.662 ± 0.009</td><td>0.717 ± 0.026</td><td>0.686 ± 0.020</td><td><strong>0.725 ± 0.019</strong></td></tr>
+            </tbody>
+            <tbody>
+              <tr><th scope="rowgroup" rowspan="2">Reacher: joint phase</th><th scope="row">Best</th><td>0.557 ± 0.025</td><td><strong>0.768 ± 0.062</strong></td><td>0.725 ± 0.018</td><td>0.758 ± 0.012</td></tr>
+              <tr><th scope="row">AUC</th><td>0.401 ± 0.007</td><td>0.545 ± 0.051</td><td>0.593 ± 0.013</td><td><strong>0.619 ± 0.019</strong></td></tr>
+            </tbody>
+            <tbody>
+              <tr><th scope="rowgroup" rowspan="2">Reacher: harmonic</th><th scope="row">Best</th><td>0.446 ± 0.046</td><td>0.588 ± 0.048</td><td>0.610 ± 0.039</td><td><strong>0.688 ± 0.075</strong></td></tr>
+              <tr><th scope="row">AUC</th><td>0.398 ± 0.007</td><td>0.488 ± 0.014</td><td>0.492 ± 0.006</td><td><strong>0.518 ± 0.012</strong></td></tr>
+            </tbody>
+            <tbody>
+              <tr><th scope="rowgroup" rowspan="2">OGB-Cube: quadratic</th><th scope="row">Best</th><td>0.520 ± 0.053</td><td>0.652 ± 0.010</td><td><strong>0.653 ± 0.004</strong></td><td>0.628 ± 0.020</td></tr>
+              <tr><th scope="row">AUC</th><td>0.390 ± 0.005</td><td>0.528 ± 0.015</td><td>0.528 ± 0.013</td><td><strong>0.530 ± 0.009</strong></td></tr>
+            </tbody>
+            <tbody>
+              <tr><th scope="rowgroup" rowspan="2">OGB-Cube: delayed cyclic</th><th scope="row">Best</th><td>0.591 ± 0.044</td><td>0.646 ± 0.006</td><td><strong>0.646 ± 0.004</strong></td><td>0.643 ± 0.003</td></tr>
+              <tr><th scope="row">AUC</th><td>0.290 ± 0.022</td><td>0.522 ± 0.006</td><td><strong>0.542 ± 0.006</strong></td><td>0.513 ± 0.009</td></tr>
+            </tbody>
+            <tbody>
+              <tr><th scope="rowgroup" rowspan="2"><strong>Mean</strong></th><th scope="row">Best</th><td>0.497 ± 0.028</td><td>0.625 ± 0.025</td><td>0.671 ± 0.008</td><td><strong>0.678 ± 0.013</strong></td></tr>
+              <tr><th scope="row">AUC</th><td>0.368 ± 0.007</td><td>0.495 ± 0.025</td><td>0.548 ± 0.007</td><td><strong>0.571 ± 0.004</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
         <div class="content research-copy">
+          <p>Entries show means ± standard deviations over three runs. The Mean rows summarize run-level averages across the eight shifts; bold values mark the highest unrounded mean for each metric.</p>
           <p>Sparse windows begin at action-block boundaries; dense windows begin at every environment step. Compute-matched sparse streaming repeats sparse windows to match the dense presentation budget. Dense replay samples from the accumulated dense windows under the same cumulative update budget as the dense stream.</p>
           <h3 class="title is-4">Persistent Test-Time Training</h3>
           <p>Retaining the predictor and optimizer state across episodes increases <strong>mean best score from 0.289 to 0.729</strong> and <strong>mean AUC from 0.273 to 0.637</strong>, compared with resetting adaptation at every episode boundary. Persistence improves both metrics on all eight shifts.</p>

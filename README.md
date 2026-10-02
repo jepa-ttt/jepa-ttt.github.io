@@ -22,7 +22,7 @@ Open http://localhost:8000. The website is static and needs no build step. GitHu
 - `static/citation.bib`: downloadable citation, also displayed on the page.
 - `static/js/index.js`: copy citation and scroll-to-top interactions.
 
-The ablation section uses the supplied `static/images/dense_replay.png` for the full dense replay comparison. A separate text summary reports the matched persistence-versus-reset control: mean best score increases from 0.289 to 0.729 and mean AUC from 0.273 to 0.637.
+The ablation section presents the full dense replay comparison as an HTML table using the page's existing results-table style, with values and bold winners transcribed from `sections/dense_ablation_table.tex`. The supplied `static/images/dense_replay.png` is retained as a source asset. A separate text summary reports the matched persistence-versus-reset control: mean best score increases from 0.289 to 0.729 and mean AUC from 0.273 to 0.637.
 
 The source manuscript is `main.tex` and its included `sections/` and `figures/` files in the supplied JEPA-TTT preprint directory. Numerical results and captions follow that manuscript. The dagger marker denotes work done during an internship at Honda Research Institute USA. The Paper button links to the [arXiv paper](https://arxiv.org/abs/2610.00722), and the displayed and downloadable citations include its arXiv identifier. No PDF or code button is shown; the compiled PDF remains available to scholarly indexing metadata.
 
