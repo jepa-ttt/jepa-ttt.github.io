@@ -22,7 +22,9 @@ Open http://localhost:8000. The website is static and needs no build step. GitHu
 - `static/citation.bib`: downloadable citation, also displayed on the page.
 - `static/js/index.js`: copy citation and scroll-to-top interactions.
 
-The source manuscript is `main.tex` and its included `sections/` and `figures/` files in the supplied JEPA-TTT preprint directory. Numerical results and captions follow that manuscript. The dagger marker denotes work done during an internship at Honda Research Institute USA. The Paper button links to the author-provided [alphaXiv page](https://www.alphaxiv.org/abs/2609.jepa-ttt). No PDF or code button is shown; the compiled PDF remains available to scholarly indexing metadata.
+The source manuscript is `main.tex` and its included `sections/` and `figures/` files in the supplied JEPA-TTT preprint directory. Numerical results and captions follow that manuscript. The dagger marker denotes work done during an internship at Honda Research Institute USA. The Paper button links to the [arXiv paper](https://arxiv.org/abs/2610.00722), and the displayed and downloadable citations include its arXiv identifier. No PDF or code button is shown; the compiled PDF remains available to scholarly indexing metadata.
+
+The local `release/` folder contains release drafts and video assets and is excluded from Git.
 
 The PDF was compiled with Tectonic 0.17.0 from a temporary copy of the manuscript. The pdfTeX-only `\pdfminorversion=4` assignment was guarded with `\ifdefined\pdfminorversion ... \fi` for XeTeX compatibility; the original manuscript files were not changed. Figures were rendered with `pdftoppm -png -singlefile -scale-to 2200`.
 
