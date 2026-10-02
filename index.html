@@ -279,23 +279,23 @@
 
     <section class="section" id="ablations" aria-labelledby="ablations-title">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered" id="ablations-title">What Makes Adaptation Effective?</h2>
-        <p class="section-intro research-copy">Controlled ablations separate additional optimization, temporal coverage, and replay. Dense temporal windows improve aggregate planning performance, with a small additional benefit from replay.</p>
-        <div class="table-container" tabindex="0" role="region" aria-label="Dense replay ablation results">
-          <table class="table is-fullwidth results-table">
-            <caption>Mean across eight shifts, with standard deviations over three run-level averages.</caption>
-            <thead><tr><th scope="col">Update rule</th><th scope="col">Best score</th><th scope="col">Mean AUC</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Sparse stream</th><td>0.497 ± 0.028</td><td>0.368 ± 0.007</td></tr>
-              <tr><th scope="row">Compute-matched sparse stream</th><td>0.625 ± 0.025</td><td>0.495 ± 0.025</td></tr>
-              <tr><th scope="row">Dense stream</th><td>0.671 ± 0.008</td><td>0.548 ± 0.007</td></tr>
-              <tr class="ours"><th scope="row"><strong>Dense replay (JEPA-TTT)</strong></th><td>0.678 ± 0.013</td><td>0.571 ± 0.004</td></tr>
-            </tbody>
-          </table>
+        <h2 class="title is-3 has-text-centered" id="ablations-title">Ablation Studies</h2>
+        <p class="section-intro research-copy">We study how dense replay and retaining adaptation across episodes contribute to planning under dynamics shifts.</p>
+        <div class="content research-copy">
+          <h3 class="title is-4">Dense Replay</h3>
+          <p>Controlled comparisons separate additional optimization, temporal coverage, and replay. Dense temporal windows improve aggregate planning performance. Replay provides a small additional benefit over the dense stream, raising mean best score from <strong>0.671 to 0.678</strong> and mean AUC from <strong>0.548 to 0.571</strong> under the same cumulative update budget.</p>
         </div>
+        <figure class="paper-figure">
+          <a href="static/images/dense_replay.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full dense replay ablation results at full resolution">
+            <img src="static/images/dense_replay.png" width="880" height="540" loading="lazy" decoding="async" alt="Best held-out planning score and normalized score AUC for four update rules on eight dynamics shifts. Aggregate best score and mean AUC are 0.497 and 0.368 for sparse stream, 0.625 and 0.495 for compute-matched sparse stream, 0.671 and 0.548 for dense stream, and 0.678 and 0.571 for dense replay.">
+          </a>
+          <figcaption>Dense replay achieves the highest aggregate best score and mean AUC among the four update rules. Entries show means and standard deviations over three runs; the Mean rows summarize run-level averages across eight shifts. Bold marks the highest mean for each metric and shift.</figcaption>
+        </figure>
         <div class="content research-copy">
           <p>Sparse windows begin at action-block boundaries; dense windows begin at every environment step. Compute-matched sparse streaming repeats sparse windows to match the dense presentation budget. Dense replay samples from the accumulated dense windows under the same cumulative update budget as the dense stream.</p>
-          <p><strong>Persistence matters.</strong> In a separate matched control using episode-local dense windows, retaining the predictor and optimizer state across episodes raises best score from 0.289 to 0.729 and mean AUC from 0.273 to 0.637, with the same number of predictor updates. This control uses a batch size of 8 and is separate from the main dense replay protocol.</p>
+          <h3 class="title is-4">Persistent Test-Time Training</h3>
+          <p>Retaining the predictor and optimizer state across episodes increases <strong>mean best score from 0.289 to 0.729</strong> and <strong>mean AUC from 0.273 to 0.637</strong>, compared with resetting adaptation at every episode boundary. Persistence improves both metrics on all eight shifts.</p>
+          <p>This matched control uses episode-local dense windows, a batch size of 8, and the same number of predictor updates in both variants. It is separate from the main dense replay protocol.</p>
           <p><strong>Scope.</strong> The study evaluates a single persistent dynamics shift. Simultaneous visual or reward changes, sequences of dynamics changes, and forgetting of previously learned dynamics remain outside the evaluation.</p>
         </div>
       </div>
